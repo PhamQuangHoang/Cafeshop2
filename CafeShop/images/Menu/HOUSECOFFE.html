@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://localhost:8080/cafeshop/menu.php -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HOUSECOFFE</title>
+
+        <!-- Bootstrap core CSS -->
+
+        <link href="./HOUSECOFFE_files/css" rel="stylesheet">
+        <link href="./HOUSECOFFE_files/bootstrap.min.css" rel="stylesheet">
+        <link href="./HOUSECOFFE_files/stylesheet.css" rel="stylesheet">
+        <link href="./HOUSECOFFE_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="icon" href="http://localhost:8080/cafeshop/images/favicon.png">
+
+        <!-- Custom styles for this template -->
+
+        <link href="./HOUSECOFFE_files/style.css" rel="stylesheet">
+        <link href="./HOUSECOFFE_files/responsive.css" rel="stylesheet">
+        <!-- <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>  -->
+        <script src="./HOUSECOFFE_files/jquery.min.js.download" type="text/javascript"></script>
+
+        <script src="./HOUSECOFFE_files/bootstrap.min.js.download" type="text/javascript"></script>
+         <script type="text/javascript" src="./HOUSECOFFE_files/instafeed.min.js.download"></script>
+        <script src="./HOUSECOFFE_files/custom.js.download" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function off() {
+                $('#showorder').addClass('hidden');
+             // $("#mycart").fadeOut();
+      $('#overlay-body').css("display","none");
+}
+function on(){
+     $('#overlay-body').css("display","block");
+}
+
+    function search(){
+        var searchText = $('#search-icon').val();
+        $.ajax({
+              type:'post',
+              url:'shoping.php',
+              data:{
+               search:"search",
+               search_Text:searchText
+              },
+              success:function(response) 
+              {
+               document.getElementById("result_div").innerHTML=response;
+              }
+             });
+ 
+ return false;
+
+    }
+    </script>
+    <script id="instafeed-fetcher" src="./HOUSECOFFE_files/recent"></script></head>
+    <body>
+        <!-- overlay-* -->
+        <div id="overlay-body" onclick="off();"></div>
+        <!--header--->
+        <header>
+            <div class="top-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 text-left col-sm-6 col-xs-6 width-100 txt-center">
+                            <div class="social-icons">
+                                <a href="http://localhost:8080/cafeshop/menu.php#"><i class="fa fa-facebook"></i></a>
+                                <a href="http://localhost:8080/cafeshop/menu.php#"><i class="fa fa-twitter"></i></a>
+                                <a href="http://localhost:8080/cafeshop/menu.php#"><i class="fa fa-instagram"></i></a>
+                                <a href="http://localhost:8080/cafeshop/menu.php#"><i class="fa fa-google-plus"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-right col-sm-6 col-xs-6 width-100 txt-center">
+                            <div class="address-location">
+                                <a href="http://localhost:8080/cafeshop/menu.php#"><i class="fa fa-map-marker fa-lg"></i> LÊ DUẪN -ĐÀ NẴNG</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="middle-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 text-left col-sm-4 col-xs-4 width-100 txt-center">
+                            <div class="opening">
+                                <p>Giờ mở cửa 8:00 am - 11:00 pm</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-3 text-center width-40 txt-right">
+                            <div class="logo">
+                                <a href="http://localhost:8080/cafeshop/home.html"><img src="./HOUSECOFFE_files/logo.png"></a>
+                            </div>
+                        </div>
+                                                <div class="col-md-4 text-right col-sm-3 col-xs-4 mt_20">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <a class="search" id="searchtoggl"><i class="fa fa-search-minus"></i></a>
+                                <div id="searchbar" class="clearfix" style="display: block;">
+                                    <form type="post" action="http://localhost:8080/cafeshop/shoping.php" onsubmit="return search();">
+                                        <button type="submit" id="searchsubmit" class="fa fa-search fa-lg"></button>
+                                        <input type="search" name="search-icon" class="placeholder-fix" id="search-icon" placeholder="Đồ uống..." autocomplete="off">
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="search">
+                                    <button type="button" class="btn btn-default" onclick="window.location.href=&#39;/cafeshop/payment.php&#39;"><i class="fa fa-shopping-cart"></i></button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                                <table class="search_result">
+                                           <tbody id="result_div">   
+                                            <tr>
+                                                   <td><img src="./HOUSECOFFE_files/PHIN-SUA-NONG.png" width="70" height="70" id="2_img" alt="2"> </td>
+                                                   <td>  <span class="tag-info tag-name" id="2_name">Phin sửa nóng </span></td>
+                                                   <td onclick="showorder(2);"><span class="tag-info tag-name">Đặt hàng</span>  </td>
+                                               </tr> 
+                               
+                       
+                                            <tr>
+                                                   <td><img src="./HOUSECOFFE_files/PHIN-SUA-DA.png" width="70" height="70" id="4_img" alt="2"> </td>
+                                                   <td>  <span class="tag-info tag-name" id="4_name">Phin sửa đá</span></td>
+                                                   <td onclick="showorder(4);"><span class="tag-info tag-name">Đặt hàng</span>  </td>
+                                               </tr> 
+                               
+                       
+                                            <tr>
+                                                   <td><img src="./HOUSECOFFE_files/FREEZE-TRA-XANH.png" width="70" height="70" id="6_img" alt="2"> </td>
+                                                   <td>  <span class="tag-info tag-name" id="6_name">Freeze trà xanh</span></td>
+                                                   <td onclick="showorder(6);"><span class="tag-info tag-name">Đặt hàng</span>  </td>
+                                               </tr> 
+                               
+                    </tbody>
+                                       </table>
+            </div>
+            <div class="bottom-header">
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse pl-0" id="myNavbar">
+                            <ul class="nav navbar-nav navbar-center">
+                                  <li class=""><a href="http://localhost:8080/cafeshop/index.php">home</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/intro.php">Giới thiệu</a></li>
+                                <li class="active"><a href="http://localhost:8080/cafeshop/menu.php">menu</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/event.php">Sự kiên</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/news.php">Tin tức</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/contact.php">Liên Hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+ 
+<script type="text/javascript" src="./HOUSECOFFE_files/shopingcart.js.download"></script>
+<h1 align="center" class="mt-20">Giao hàng nhanh chóng </h1>
+                    <!-- ShowOrder  -->
+                                    <div class="row"> 
+                                             <div class="col-md-8 details hidden" id="showorder">
+                                            
+                                                <div class="row details-header ">
+                                                   <div class="col-md-2  col-xs-4 col-sm-4">
+                                                        <img src="./HOUSECOFFE_files/270_crop_PHIN-SUA-NONG.png" class="img-responsive proimg" alt="1">                                       
+                                                   </div> 
+                                                   <div class="col-md-8 col-xs-8 col-sm-8 mt-20">
+                                                        <span class="proname">Chả lụa xá xíu</span><br>
+                                                        <span class="proprice">123123</span>
+
+                                                       
+                                                   </div>
+                                                </div>
+                                                <div class="row details-header ">
+                                                   <div class="col-md-12 col-sx-12 col-sm-12  mt-20 mb-20">
+                                                    <span style="margin-left: 10px;">Size</span> <br>
+                                                 
+                                                        <div class="checkboxSize"><input type="checkbox" id="small" class="ex" name="" checked="">
+                                                            <span> Size nhỏ (475 ml)
+                                                                </span>
+                                                        </div>
+                                                        
+                                                        <div class="checkboxSize"><input type="checkbox" class="ex" name="">
+                                                            <span> Size Vừa(600 ml) (+7.000 ₫)</span>
+                                                        </div>                                     
+                                                   </div> 
+                                                </div>
+                                                <div class="row details-header">
+                                                     <div class="form-group a">
+                                                        <input type="text" id="note" class="form-control placeholder-fix" placeholder="Thêm ghi chú :">
+                                                     </div>
+                                                </div> 
+                                                <div class="row details-header">
+                                                     <div class="form-group a">
+                                                         <div class="numbers-row">
+                                                            <div class="inc button counter">+</div>
+                                                            <div class="counter"><input type="text" name="" id="proNum" value="1" disabled="true"></div>
+                                                            <div class="dec button counter">-</div>
+                                                          
+                                                         </div>
+                                                         
+                                                           
+                                                            <input type="submit" name="" class="add-cart" onclick="cart();" value="Thêm vào giỏ hàng">
+                                                          
+                                                     </div>
+
+                                                </div>
+
+
+                                          
+
+                                        </div>
+                                    </div>
+                                   
+
+         <section class="forth-block" id="ordering">
+            <div class="container">
+                <div class="block-heading">
+                    <h1></h1>
+                </div>
+                 <div class="row">
+                    <div class="gallery-block">
+                        <div class="col-md-3 col-sm-3 col-xs-3 width_100">
+                          <div class="row">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="http://localhost:8080/cafeshop/menu.php#All">Tất cả</a></li>
+                                <li><a data-toggle="tab" href="http://localhost:8080/cafeshop/menu.php#ref-2">Cà phê phin</a></li>
+                                <li><a data-toggle="tab" href="http://localhost:8080/cafeshop/menu.php#ref-18">CÀ PHÊ ESPRESSO</a></li>
+                                <li><a data-toggle="tab" href="http://localhost:8080/cafeshop/menu.php#ref-10">Bánh mì</a></li>
+                                <li><a data-toggle="tab" href="http://localhost:8080/cafeshop/menu.php#ref-6">Freeze (Đá xay)</a></li>
+                                <li><a data-toggle="tab" href="http://localhost:8080/cafeshop/menu.php#ref-14">Trà</a></li>
+                            </ul>
+                           </div> 
+                                            <div class="row mt-90 cart-show border">
+                               <div class="col-md-12 col-xs-12 col-sm-12  text-center border-b pb-20">
+                                    <button type="submit" class="btn btn-primary look " id="show-cart" onclick="window.location.href = &#39;payment.php&#39;; ">Xem giỏ hàng/order</button>
+                                </div>
+
+                                 <div class="col-md-12 col-xs-12 col-sm-12  my-cart border mb-20" id="mycart">   					<div class="row mb-20">
+                                            <ul class="cart-order">
+                                                   <li> <p>Tổng cộng: <span id="pr-count">0</span> Món</p></li> 
+                                            </ul> 
+                                            <ul class="cart-order">
+                                                  <li>Tổng tiền : <span id="pr-sum">0</span><i>đ</i></li>
+                                            </ul>  
+                                        </div> </div>
+
+                            </div>
+                           
+                           <!-- end col-md-3 -->
+                        </div>
+
+                 <div class="col-md-9 col-sm-12 col-xs-12 width_100">
+                            <div class="tab-content">
+                                <div id="All" class="tab-pane fade in active">
+                                    <div class="row"><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-SUA-NONG.png" class="img-responsive images" id="2_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(2);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="2_name">Phin sửa nóng </p>
+                                     <p class="tag-info tag-price" id="2_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-DEN-DA.png" class="img-responsive images" id="3_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(3);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="3_name">Phin đen đá</p>
+                                     <p class="tag-info tag-price" id="3_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-SUA-DA.png" class="img-responsive images" id="4_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(4);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="4_name">Phin sửa đá</p>
+                                     <p class="tag-info tag-price" id="4_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-DEN-NONG.png" class="img-responsive images" id="5_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(5);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="5_name">Phin đen nóng</p>
+                                     <p class="tag-info tag-price" id="5_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/FREEZE-TRA-XANH.png" class="img-responsive images" id="6_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(6);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="6_name">Freeze trà xanh</p>
+                                     <p class="tag-info tag-price" id="6_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CARAMEL-PHIN-CAFE.png" class="img-responsive images" id="7_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(7);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="7_name">Caramel phin cafe</p>
+                                     <p class="tag-info tag-price" id="7_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CLASSIC-PHIN-FREEZE.png" class="img-responsive images" id="8_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(8);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="8_name">Classic phin freeze</p>
+                                     <p class="tag-info tag-price" id="8_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CHOCOLATE-FREEZE.png" class="img-responsive images" id="9_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(9);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="9_name">Freeze sô-cô-la</p>
+                                     <p class="tag-info tag-price" id="9_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMXIUMAI.png" class="img-responsive images" id="10_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(10);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="10_name">Xíu nại</p>
+                                     <p class="tag-info tag-price" id="10_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMCHALUAXAXIU.png" class="img-responsive images" id="11_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(11);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="11_name">Chả lụa xá xíu</p>
+                                     <p class="tag-info tag-price" id="11_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMGAXE.png" class="img-responsive images" id="12_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(12);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="12_name">Gà xé nướng tương</p>
+                                     <p class="tag-info tag-price" id="12_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMTHITNUONG.png" class="img-responsive images" id="13_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(13);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="13_name">Thịt nướng</p>
+                                     <p class="tag-info tag-price" id="13_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRATHACHVAI.png" class="img-responsive images" id="14_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(14);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="14_name">Trà thạch vải</p>
+                                     <p class="tag-info tag-price" id="14_price">39,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRATHACHDAO.png" class="img-responsive images" id="15_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(15);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="15_name">Trà thạch đào</p>
+                                     <p class="tag-info tag-price" id="15_price">39,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRASENVANG.png" class="img-responsive images" id="16_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(16);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="16_name">Trà sen vàng</p>
+                                     <p class="tag-info tag-price" id="16_price">39,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRATHANHDAO.png" class="img-responsive images" id="17_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(17);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="17_name">Trà thanh đào</p>
+                                     <p class="tag-info tag-price" id="17_price">39,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CARAMEL-MACCHIATO.png" class="img-responsive images" id="18_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(18);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="18_name">Caramel Macchiato</p>
+                                     <p class="tag-info tag-price" id="18_price">54,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/LATTE.png" class="img-responsive images" id="19_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(19);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="19_name">LATTE</p>
+                                     <p class="tag-info tag-price" id="19_price">54,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CAPPUCINO.png" class="img-responsive images" id="20_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(20);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="20_name">CAPPUCINO</p>
+                                     <p class="tag-info tag-price" id="20_price">54,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/AMERICANO.png" class="img-responsive images" id="21_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(21);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="21_name">AMERICANO</p>
+                                     <p class="tag-info tag-price" id="21_price">44,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/ESPRESSO.png" class="img-responsive images" id="22_img" alt="2">
+                                 <div class="overlay">
+                                     <button class="info" href="" onclick="showorder(22);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="22_name">ESPRESSO</p>
+                                     <p class="tag-info tag-price" id="22_price">44,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div>             </div>
+                            </div>
+                            <div id="ref-2" class="tab-pane fade ">
+                                    <div class="row"><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-SUA-NONG.png" class="img-responsive" id="2_img" alt="2">
+                                 <div class="overlay">
+                                   <button class="info" href="" onclick="showorder(2);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="2_name">Phin sửa nóng </p>
+                                     <p class="tag-info tag-price" id="2_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-DEN-DA.png" class="img-responsive" id="3_img" alt="2">
+                                 <div class="overlay">
+                                   <button class="info" href="" onclick="showorder(3);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="3_name">Phin đen đá</p>
+                                     <p class="tag-info tag-price" id="3_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-SUA-DA.png" class="img-responsive" id="4_img" alt="2">
+                                 <div class="overlay">
+                                   <button class="info" href="" onclick="showorder(4);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="4_name">Phin sửa đá</p>
+                                     <p class="tag-info tag-price" id="4_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/PHIN-DEN-NONG.png" class="img-responsive" id="5_img" alt="2">
+                                 <div class="overlay">
+                                   <button class="info" href="" onclick="showorder(5);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="5_name">Phin đen nóng</p>
+                                     <p class="tag-info tag-price" id="5_price">29,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div>             </div>
+                            </div>
+                            <div id="ref-18" class="tab-pane fade ">
+                                    <div class="row"><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CARAMEL-MACCHIATO.png" class="img-responsive" id="18_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(18);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="18_name">Caramel Macchiato</p>
+                                     <p class="tag-info tag-price" id="18_price">54,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/LATTE.png" class="img-responsive" id="19_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(19);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="19_name">LATTE</p>
+                                     <p class="tag-info tag-price" id="19_price">54,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CAPPUCINO.png" class="img-responsive" id="20_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(20);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="20_name">CAPPUCINO</p>
+                                     <p class="tag-info tag-price" id="20_price">54,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/AMERICANO.png" class="img-responsive" id="21_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(21);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="21_name">AMERICANO</p>
+                                     <p class="tag-info tag-price" id="21_price">44,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/ESPRESSO.png" class="img-responsive" id="22_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(22);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="22_name">ESPRESSO</p>
+                                     <p class="tag-info tag-price" id="22_price">44,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div>             </div>
+                            </div>
+                            <div id="ref-10" class="tab-pane fade ">
+                                    <div class="row"><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMXIUMAI.png" class="img-responsive" id="10_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(10);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="10_name">Xíu nại</p>
+                                     <p class="tag-info tag-price" id="10_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMCHALUAXAXIU.png" class="img-responsive" id="11_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(11);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="11_name">Chả lụa xá xíu</p>
+                                     <p class="tag-info tag-price" id="11_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMGAXE.png" class="img-responsive" id="12_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(12);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="12_name">Gà xé nướng tương</p>
+                                     <p class="tag-info tag-price" id="12_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/BMTHITNUONG.png" class="img-responsive" id="13_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(13);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="13_name">Thịt nướng</p>
+                                     <p class="tag-info tag-price" id="13_price">19,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div>             </div>
+                            </div>
+                            <div id="ref-6" class="tab-pane fade ">
+                                    <div class="row"><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/FREEZE-TRA-XANH.png" class="img-responsive" id="6_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(6);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="6_name">Freeze trà xanh</p>
+                                     <p class="tag-info tag-price" id="6_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CARAMEL-PHIN-CAFE.png" class="img-responsive" id="7_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(7);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="7_name">Caramel phin cafe</p>
+                                     <p class="tag-info tag-price" id="7_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CLASSIC-PHIN-FREEZE.png" class="img-responsive" id="8_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(8);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="8_name">Classic phin freeze</p>
+                                     <p class="tag-info tag-price" id="8_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/CHOCOLATE-FREEZE.png" class="img-responsive" id="9_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(9);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="9_name">Freeze sô-cô-la</p>
+                                     <p class="tag-info tag-price" id="9_price">49,000 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div>             </div>
+                            </div>
+                            <div id="ref-14" class="tab-pane fade ">
+                                    <div class="row"><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRATHACHVAI.png" class="img-responsive" id="14_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(14);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="14_name">Trà thạch vải</p>
+                                     <p class="tag-info tag-price" id="14_price">39,000.00 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRATHACHDAO.png" class="img-responsive" id="15_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(15);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="15_name">Trà thạch đào</p>
+                                     <p class="tag-info tag-price" id="15_price">39,000.00 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRASENVANG.png" class="img-responsive" id="16_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(16);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="16_name">Trà sen vàng</p>
+                                     <p class="tag-info tag-price" id="16_price">39,000.00 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div><div class="col-md-4 col-sm-4 col-xs-4">
+                             <div class="tab-image">
+                                 <img src="./HOUSECOFFE_files/TRATHANHDAO.png" class="img-responsive" id="17_img" alt="2">
+                                 <div class="overlay">
+                                    <button class="info" href="" onclick="showorder(17);"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                     <p class="tag-info tag-name" id="17_name">Trà thanh đào</p>
+                                     <p class="tag-info tag-price" id="17_price">39,000.00 <i>đ</i></p>
+                                 </div>
+                             </div>
+                         </div>                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </section>
+      
+
+
+ 
+
+        <footer class="bgcolor1 footer-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 width-50 width_100">
+                        <div class="footer-details">
+                            <h4>about demo</h4>
+                            <p>Far far away, behind the word in
+                                mountains, far from the countrie
+                                Vokalia and Consonantia, thereli
+                                the blind texts. Separated theyli
+                                in Bookmarksgrove right at thec
+                                of the Semantics, a large langul.</p>
+                            <h4>NEWSLETTER</h4>
+                            <div id="input_container">
+                                <input type="text" id="input" class="placeholder-fix" placeholder="Email id -">
+                                <img src="./HOUSECOFFE_files/sent-mail.png" id="input_img">
+                            </div>
+                            <!--                                <div class="input-group">
+                                                                <input type="email" class="form-control" placeholder="Email id" aria-describedby="basic-addon2">
+                                                                <span class="input-group-addon" id="basic-addon2"><img src="images/Home/sent-mail.png" alt="sent-mail"></span>
+                                                                
+                                                            </div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 width-50 width_100">
+                        <div class="footer-details">
+                            <h4></h4>
+                            <ul class="list-unstyled header-links">
+                               <li class=""><a href="http://localhost:8080/cafeshop/index.php">home</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/intro.php">Giới thiệu</a></li>
+                                <li class="active"><a href="http://localhost:8080/cafeshop/menu.php">menu</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/event.php">Sự kiên</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/news.php">Tin tức</a></li>
+                                <li class=""><a href="http://localhost:8080/cafeshop/contact.php">Liên Hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12 width-50 width_100">
+                                <div class="footer-details">
+                                    <h4>THỜI GIAN HOẠT ĐỘNG</h4>
+                                    <ul class="list-unstyled timing">
+                                        <li><a href="http://localhost:8080/cafeshop/menu.php#">Buổi trưa :  11 am - 3 pm</a></li>
+                                        <li><a href="http://localhost:8080/cafeshop/menu.php#about.html">buổi tối :  6 am - 11 pm</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 width-50 width_100">
+                                <div class="footer-details">
+                                    <h4>Liên hệ</h4>
+                                    <ul class="list-unstyled location-value">
+                                        <li>
+                                            <i class="fa fa-map-marker fa-lg"></i>
+                                            <p><a href="http://localhost:8080/cafeshop/menu.php#">Lê Duẫn -Đà Nẵng</a></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-10 col-xs-12">
+                                <div class="footer-details">
+                                    <h4>instagram photos</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="footer-images">
+                                       <div id="instafeed"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>        
+                    </div>  
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="copyright">
+                            <!--Do not remove Backlink from footer of the template. To remove it you can purchase the Backlink-->
+                            © 2018 All right reserved. ReDesigned by <a href="https://www.facebook.com/profile.php?id=100006891096845" target="_blank">HoangPham69.</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+        <a id="back-to-top" class="scrollTop back-to-top" href="javascript:void(0);" style="display: none;">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+       
+    
+</body></html>

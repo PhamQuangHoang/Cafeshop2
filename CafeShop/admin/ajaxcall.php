@@ -1,9 +1,17 @@
 <?php session_start();
  require_once 'config.php';
 	$config = new Config;
-	$result = $config->selectData('select * from type_drink');
+	// $result = $config->selectData('select * from type_drink');
+//modals.php
+if(isset($_POST['typename'])){
+  $output = '';
+  $typeid =$_POST['typename'];
+  $output .= $typeid.'HelloW';
+  die($output);
+}
 
 
+//resource.php
 if(isset($_POST['typeid'])){
   $typeid =$_POST['typeid'];
   $output ='';

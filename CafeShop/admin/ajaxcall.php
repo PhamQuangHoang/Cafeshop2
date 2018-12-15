@@ -4,10 +4,8 @@
 	// $result = $config->selectData('select * from type_drink');
 //modals.php
 if(isset($_POST['typename'])){
-  $output = '';
-  $typeid =$_POST['typename'];
-  $output .= $typeid.'HelloW';
-  die($output);
+  die($_POST['typename']);
+  
 }
 
 

@@ -1,14 +1,17 @@
 <script type="text/javascript" >
-function showName(typeName){
+function showName(typeName,typeID){
       
      $.ajax({
         type:'post',
+        dataType: "json",
           url: "ajaxcall.php",
         data:{
-          typename:typeName
+          typename:typeName,
+          typeid:typeID
         },
         success:function(response) {
-          $('.result').val(response);
+          $('.result').val(response.value);
+          $('.result2').val(response.value2);
         }
       });
     
@@ -18,25 +21,40 @@ function typeSubmit(type){
     case 'add':
     $.ajax({
       type: 'post',
-      data: {},
+      url: 'ajaxcall.php',
+      data: {addType:$('.result').val()},
       success:function(response){
-        $('#modal_list_type').html(response);
+        $('.result').val('');
+        if(response == 'true'){
+          alert("Insert type success");
+          window.location.reload();
+        }else{
+          alert('This type has already exist');
+        }
       }
     });
     break;
     case 'change':
     $.ajax({
       type:'post',
-      data:{},
-      success:function(){
-
+      url:'ajaxcall.php',
+      data:{changeType:$('.result').val(),
+      changeTypeID:$('.result2').val()
+    },
+      success:function(response){
+        if(response == 'true'){
+          alert('Change Success');
+          window.location.reload();
+        }else{
+          alert('Type is already exist, Please input another type name');
+        }
       }
     });
     break;
     case 'retype':
     $.ajax({
       type:'post',
-      success:function(){
+      success:function(response){
         $('.result').val('');
       }
     });
@@ -44,9 +62,15 @@ function typeSubmit(type){
     case 'delete':
     $.ajax({
       type:'post',
-      data:{},
-      success:function(){
-
+      url:'ajaxcall.php',
+      data:{deleteType:$('.result').val()},
+      success:function(response){
+        if(response == 'true'){
+          alert("Delete success!");
+          window.location.reload();
+        }else{
+          alert('Delete not success');
+        }
       }
     });
   }
@@ -72,13 +96,14 @@ function typeSubmit(type){
                 foreach ($types as $type) {
                   $typex = '"'.$type['type_name'].'"';
                   
-                  echo "<li class='col-md-12 col-lg-12 col-sm-6 col-xs-4'><input type='submit' class='btn btn-default btn-block' onclick='showName(".$typex.")' value='".$type['type_name']."'/></li>";
+                  echo "<li class='col-md-12 col-lg-12 col-sm-6 col-xs-4'><input type='submit' class='btn btn-default btn-block' onclick='showName(".$typex.",".$type['type_id'].")' value='".$type['type_name']."'/></li>";
                 }
                ?>
               </ul>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <input type="text" class="result input-sm" name="typemenu_label" value="">
+            <input type="hidden" class="result2" name="typemenu_id" value="">
             <div class="btn-group">
               <button class="btn btn-info" name="type_add" onclick="typeSubmit('add');">Thêm mới</button>
               <button class="btn btn-info" name="type_change" onclick="typeSubmit('change');">Thay đổi</button>

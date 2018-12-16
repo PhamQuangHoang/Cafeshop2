@@ -2,12 +2,41 @@
  require_once 'config.php';
 	$config = new Config;
 	// $result = $config->selectData('select * from type_drink');
+  function alert($msg){
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+  }
 //modals.php
 if(isset($_POST['typename'])){
-  die($_POST['typename']);
-  
+  die(json_encode(array("value"=>$_POST['typename'], "value2"=>$_POST['typeid'])));
 }
 
+if(isset($_POST['addType']) && ($_POST['addType'] != '')){
+  $result = $config->selectSingle('select * from type_drink where type_name = "'.$_POST['addType'].'"');
+  if(!$result){
+    $config->IDU("INSERT INTO `type_drink` (`type_id`, `type_name`) VALUES (NULL, '".$_POST['addType']."')");
+    die('true');
+  }else{
+    die('false');
+  }
+}
+if(isset($_POST['deleteType'])){
+  $result = $config->selectSingle('select * from type_drink where type_name = "'.$_POST['deleteType'].'"');
+  if($result){
+    $config->IDU("DELETE FROM `type_drink` WHERE type_name = '".$_POST['deleteType']."'");
+    die('true');
+  }else{
+    die('false');
+  }
+}
+if(isset($_POST['changeType']) && ($_POST['changeType'] != '')){
+  $result = $config->selectSingle('select * from type_drink where type_name = "'.trim($_POST['changeType']).'"');
+  if(!$result){
+    $config->IDU("UPDATE type_drink SET type_name = '".trim($_POST['changeType'])."' WHERE type_id = ".$_POST['changeTypeID']);
+    die('true');
+  }else{
+    die('false');
+  }
+}
 
 //resource.php
 if(isset($_POST['typeid'])){

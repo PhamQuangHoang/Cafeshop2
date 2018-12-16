@@ -20,6 +20,13 @@
 		function selectSingle($sql){
 			return mysqli_fetch_assoc(mysqli_query($this->conn,$sql));
 		}
+		function IDU($sql){
+			if(mysqli_query($this->conn,$sql) === TRUE){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}
 
 

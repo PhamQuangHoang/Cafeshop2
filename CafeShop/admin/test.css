@@ -2,9 +2,9 @@
   visibility: hidden;
 }
 
-ul#modal_list_type{
+#modal_list_type{
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: initial;
   -webkit-overflow-scrolling: touch;
   max-height: 200px;
 }

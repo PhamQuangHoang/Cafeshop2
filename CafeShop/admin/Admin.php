@@ -42,8 +42,8 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">quản lý hàng</a>
 							<ul class="dropdown-menu text-light-bg-dark" id="nav_child">
-								<li><a href="#" id="menu" data-toggle="modal" data-target="#myModal">nhóm menu thực đơn</a></li>
-								<li><a href="#">menu thực đơn</a></li>
+								<li><a href="#" id="menu" data-toggle="modal" data-target="#modal1">nhóm menu thực đơn</a></li>
+								<li><a href="#" id="menudetail" data-toggle="modal" data-target="#modal2">menu thực đơn</a></li>
 								<li><a href="#">nhóm nguyên liệu</a></li>
 								<li><a href="#">thêm nguyên liệu</a></li>
 								<li><a href="#">nhập kho nguyên liệu</a></li>

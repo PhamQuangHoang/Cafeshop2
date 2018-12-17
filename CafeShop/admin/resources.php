@@ -11,8 +11,6 @@ function showdata(id){
           $('.result').html(response);
         }
       });
-
-     
     
 }
 
@@ -23,11 +21,11 @@ function showdata(id){
 	$result = $config->selectData('select * from type_drink');
   ?>
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-	<ul class="list-group-item list-unstyled">
+	<ul class="list-group list-unstyled">
 		<li style="font-weight: bold;">TÊN NHÓM HÀNG HÓA</li>
 		<?php foreach ($result as $rows) { ?>
 			
-			<?php echo '<li><input type="submit" class="btn-block btn-default" onclick="showdata('.$rows['type_id'].');"  id="'.$rows['type_id'].'" name="choose_resources_type" value="'.$rows['type_name'].'" />
+			<?php echo '<li><input type="submit" class="btn btn-block btn-default" onclick="showdata('.$rows['type_id'].');"  id="'.$rows['type_id'].'" name="choose_resources_type" value="'.$rows['type_name'].'" />
 							
 						</li>'; ?>
 			

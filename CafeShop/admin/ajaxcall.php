@@ -29,13 +29,20 @@ if(isset($_POST['deleteType'])){
   }
 }
 if(isset($_POST['changeType']) && ($_POST['changeType'] != '')){
+  if($_POST['changeTypeID'] === ''){
+    die('Please select a type to change!');
+  }
   $result = $config->selectSingle('select * from type_drink where type_name = "'.trim($_POST['changeType']).'"');
   if(!$result){
     $config->IDU("UPDATE type_drink SET type_name = '".trim($_POST['changeType'])."' WHERE type_id = ".$_POST['changeTypeID']);
     die('true');
   }else{
-    die('false');
+    die('Type is already exist, Please input another type name');
   }
+}
+//modal2
+if(isset($_POST['drinkname'])){
+  die(json_encode(array("value"=>$_POST['drinkname'], "value2"=>$_POST['drinkID'])));
 }
 
 //resource.php

@@ -5,11 +5,11 @@
 	$result = $config->selectData('select * from type_drink');
   ?>
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-	<ul class="list-group-item list-unstyled">
+	<ul class="list-group list-unstyled">
 		<li style="font-weight: bold;">TÊN NHÓM HÀNG HÓA</li>
 		<?php foreach ($result as $rows) { ?>
 			<form action="" method="POST">
-			<?php echo '<li><input type="submit" class="btn-block btn-default" name="choose_menu" value="'.$rows['type_name'].'" />
+			<?php echo '<li><input type="submit" class="btn btn-block btn-default" name="choose_menu" value="'.$rows['type_name'].'" />
 							<input type="hidden" name="type_id" value="'.$rows['type_id'].'" />
 						</li>'; ?>
 			</form>
@@ -55,7 +55,9 @@
 	<div class="col-lg-3 col-md-2 col-sm-2 col-xs-4 menu-right">
 		<?php echo $rows_right['quantity'] ?>
 	</div>
+
 	<?php 
 		}
 	 } ?>
 </div>
+<?php include_once('modals.php'); ?>

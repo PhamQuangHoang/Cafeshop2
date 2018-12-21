@@ -42,9 +42,52 @@ if(isset($_POST['changeType']) && ($_POST['changeType'] != '')){
 }
 //modal2
 if(isset($_POST['drinkname'])){
-  die(json_encode(array("value"=>$_POST['drinkname'], "value2"=>$_POST['drinkID'])));
+  $result = $config->selectSingle('select * from drink where drink_id = '.$_POST['drinkID']);
+  die(json_encode(array("name"=>$_POST['drinkname'], "id"=>$_POST['drinkID'],"unit"=>$result['unit'],"quantity"=>$result['quantity'],"price"=>$result['price'])));
 }
+if(isset($_POST['modal2_type_name'])){
+  if(strcmp($_POST['modal2_type_name'],'all') == 0){
+    $results = $config->selectData('select * from drink');
+    $string = "";
+    foreach ($results as $drink) {
+    $drinkx = '"'.$drink['drink_name'].'"';
+    $string .= "<a onclick='parseName(".$drinkx.",".$drink['type_id'].")' class='col-md-12 col-lg-12 col-sm-6 col-xs-4 list-group-item'>".$drink['drink_name']."<span class='badge badge-secondary'>".$drink['quantity']."</span></a>";
+    }
+    die($string);
+  }else{
+    $id = $config->selectSingle('select type_id from type_drink where type_name = "'.$_POST['modal2_type_name'].'"');
+    $results = $config->selectData('select * from drink where type_id = '.$id['type_id']);
+    $string = ""; 
+    foreach ($results as $drink) {
+    $drinkx = '"'.$drink['drink_name'].'"';
+    $string .= "<a onclick='parseName(".$drinkx.",".$drink['type_id'].")' class='col-md-12 col-lg-12 col-sm-6 col-xs-4 list-group-item'>".$drink['drink_name']."<span class='badge badge-secondary'>".$drink['quantity']."</span></a>";
+    }
+    die($string);
+  }
+  
+}
+if(isset($_POST['modal2SubmitType'])){
 
+  switch ($_POST['modal2SubmitType']) {
+    case 'add':
+      $result = $config->selectSingle('select * from drink where drink_name = "'.$_POST['modal2_product_name'].'" OR drink_id = "'.$_POST['modal2_product_id'].'"');
+      if(!$result){
+        $id = $config->selectSingle('select type_id from type_drink where type_name = "'.$_POST['modal2_product_type'].'"');
+        $config->IDU("INSERT INTO `drink` (`drink_id`, `type_id`, `drink_name`, `unit`, `price`, `quantity`) VALUES ('".$_POST['modal2_product_id']."', '".$id['type_id']."', '".$_POST['modal2_product_name']."', '".$_POST['modal2_product_unit']."', '".$_POST['modal2_product_price']."', '".$_POST['modal2_product_quantity']."');");
+        die('true');
+      }else{
+        die('false');
+      }
+    break;
+    
+    default:
+      # code...
+      break;
+  }
+
+  
+  
+}
 //resource.php
 if(isset($_POST['typeid'])){
   $typeid =$_POST['typeid'];

@@ -1,14 +1,18 @@
 .modal-backdrop.in{
   visibility: hidden;
 }
-
-#modal_list_type{
+.modal{
+  background-color: rgba(0, 0, 0, 0.32);
+}
+#modal_list_type #modal2-list-type{
   overflow-x: hidden;
   overflow-y: initial;
   -webkit-overflow-scrolling: touch;
   max-height: 200px;
 }
-
+.modal2-left div{
+  margin-top: 5px;
+}
 select {
 		width: 100%;
     padding:3px;

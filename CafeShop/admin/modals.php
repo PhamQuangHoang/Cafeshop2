@@ -1,4 +1,5 @@
 <script type="text/javascript" >
+  var drinkid = '';
 function showName(typeName,typeID){
       
      $.ajax({
@@ -86,6 +87,7 @@ function parseName(name,id) {
     data:{drinkname:name,drinkID:id},
     success:function(response){
       $("#modal2-product-name").val(response.name);
+      drinkid = response.id;
       $("#modal2-product-id").val(response.id);
       $("#modal2-product-unit").val(response.unit);
       $("#modal2-product-sell").val(response.price);
@@ -118,6 +120,7 @@ function modal2Submit(type){
         modal2SubmitType:"add",
         modal2_product_type:$("#modal2-product-type").val(),
         modal2_product_name:$("#modal2-product-name").val(),
+        
         modal2_product_id:$("#modal2-product-id").val(),
         modal2_product_unit:$("#modal2-product-unit").val(),
         modal2_product_price:$("#modal2-product-sell").val(),
@@ -128,6 +131,7 @@ function modal2Submit(type){
           alert("Insert type success");
           window.location.reload();
         }else{
+
           alert(response);
           alert('This type has already exist');
         }
@@ -138,11 +142,19 @@ function modal2Submit(type){
     $.ajax({
       type:'post',
       url:'ajaxcall.php',
-      data:{changeType:$('.result').val(),
-      changeTypeID:$('.result2').val()
+      data:{
+        modal2SubmitType:"change",
+        modal2_product_type:$("#modal2-product-type").val(),
+        modal2_product_name:$("#modal2-product-name").val(),
+        modal2_product_id_old:drinkid,
+        modal2_product_id_new:$("#modal2-product-id").val(),
+        modal2_product_unit:$("#modal2-product-unit").val(),
+        modal2_product_price:$("#modal2-product-sell").val(),
+        modal2_product_quantity:$("#modal2-product-quantity").val()
     },
       success:function(response){
         if(response == 'true'){
+
           alert('Change Success');
           window.location.reload();
         }else{
@@ -152,20 +164,24 @@ function modal2Submit(type){
     });
     break;
     case 'retype':
-    $.ajax({
-      type:'post',
-      success:function(response){
-        $('.result').val('');
-        $('.result2').val('');
-      }
-    });
+      $("#modal2-product-type").val($('#modal2-product-type option:first').val());
+      $("#modal2-product-name").val('');
+      $("#modal2-product-id").val('');
+      $("#modal2-product-unit").val('');
+      $("#modal2-product-sell").val('');
+      $("#modal2-product-buy").val('');
+      $("#modal2-product-quantity").val('');
     break;
     case 'delete':
-    if(confirm('Do you want to delete this type?')){
+    if(confirm('Do you want to delete this drink?')){
     $.ajax({
       type:'post',
       url:'ajaxcall.php',
-      data:{deleteType:$('.result').val()},
+      data:{
+        modal2SubmitType:"delete",
+        modal2_product_name:$("#modal2-product-name").val(),
+        modal2_product_id:$("#modal2-product-id").val()
+    },
       success:function(response){
         if(response == 'true'){
           alert("Delete success!");
@@ -233,7 +249,7 @@ function modal2Submit(type){
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Quản lý menu thực đơn</h4>
       </div>
-      <div class="modal-body col-lg-12 col-md-12 col-xs-12 col-sm-12" style="height: 70vh">
+      <div class="modal-body col-lg-12 col-md-12 col-xs-12 col-sm-12">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 modal2-left">
             <div class="row">
               <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
@@ -241,7 +257,6 @@ function modal2Submit(type){
               </div>
               <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
                 <select class="form-control" name="modal2-product-type" id="modal2-product-type">
-                  <option value="all">Tất cả</option>
                   <option value="all">Tất cả</option>
                   <?php
                     foreach ($types as $type) {
@@ -313,7 +328,7 @@ function modal2Submit(type){
             <br>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <label style="display: inline;">Tên hàng hóa <span class="badge">S.L</span></label>
-                <div class="list-group" id="modal2-list-type" style="max-height: 50vh">
+                <div class="list-group" id="modal2-list-type">
                 <!-- <?php 
                   $drinks = $config->selectData('select * from drink');
                   foreach ($drinks as $drink) {

@@ -60,4 +60,3 @@
 		}
 	 } ?>
 </div>
-<?php include_once('modals.php'); ?>

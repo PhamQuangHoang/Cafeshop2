@@ -44,10 +44,10 @@
 							<ul class="dropdown-menu text-light-bg-dark" id="nav_child">
 								<li><a href="#" id="menu" data-toggle="modal" data-target="#modal1">nhóm menu thực đơn</a></li>
 								<li><a href="#" id="menudetail" data-toggle="modal" data-target="#modal2">menu thực đơn</a></li>
-								<li><a href="#">nhóm nguyên liệu</a></li>
-								<li><a href="#">thêm nguyên liệu</a></li>
-								<li><a href="#">nhập kho nguyên liệu</a></li>
-								<li><a href="#">danh sách nhập kho</a></li>
+								<li><a href="#" id="groupresource" data-toggle="modal" data-target="#modal1">nhóm nguyên liệu</a></li>
+								<li><a href="#" id="addresource" data-toggle="modal" data-target="#modal4">thêm nguyên liệu</a></li>
+								<li><a href="#" id="importresource" data-toggle="modal" data-target="#modal5">nhập kho nguyên liệu</a></li>
+								<li><a href="#" id="listimportresource" data-toggle="modal" data-target="#modal6">danh sách nhập kho</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -69,10 +69,11 @@
 						<li>
 							<a class="btn btn-default btn-outline btn-circle collapsed" data-toggle="collapse" href="#nav-collapse" aria-expanded="false" aria-controls="nav-collapse"><?php 
 									if(isset($_SESSION['realname'])){
-										echo $_SESSION['realname'] ;
+										echo '<span id="employ">'.$_SESSION['realname'].'</span>' ;
 									}else {
 										echo '<span id="login">Đăng nhập</span>' ;
 									}
+
 
 							 ?> <i class=""></i> </a>
 						</li>
@@ -97,7 +98,9 @@
 	<!-- dynamictabs -->
 	<div class="container-fluid">
 		<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		
 			<div class="row bhoechie-tab-container">
+
 				<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 bhoechie-tab-menu">
 					<div class="list-group">
 						<a href="#" class="list-group-item active text-center">
@@ -120,13 +123,13 @@
 				</div>
 				<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10 bhoechie-tab">
 					<!-- flight section -->
+
 					<div class="bhoechie-tab-content active">
 						<?php include_once 'listmenu.php'; ?>
-
 					</div>
 					<!-- train section -->
 					<div class="bhoechie-tab-content">
-							<?php include_once 'resources.php' ?> 
+						<?php include_once 'resources.php' ?> 
 					</div>
 
 					<!-- hotel search -->
@@ -142,6 +145,9 @@
 
 					</div>
 
+				</div>
+				<div class="container">
+					<?php include_once 'modals.php'; ?>
 				</div>
 			</div>
 		</div>

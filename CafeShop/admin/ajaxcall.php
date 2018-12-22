@@ -145,21 +145,8 @@ if(isset($_POST['typeid'])){
 	die($output);
 }
 
-
-
-// QLBAN SESSION
-
-// bat dau button
-if(isset($_POST['startorder'])){
- $sql = "UPDATE `frmtable` SET `status` = '1' , `controller`= '".$_POST['employee']."' WHERE `frmtable`.`tableID` = '".$_POST['startorder']."' ";
-    if($config->IDU($sql)){
-        echo $_POST['employee'];
-
-    }
-
-
-}
 if(isset($_POST['datatable'])){
+
 //  $array = $_POST['datatable'];
 if("" == trim($_POST['joindate'])){
     echo "empty";
@@ -169,21 +156,11 @@ if("" == trim($_POST['joindate'])){
   $ban = "ban".$_POST['ban'];
   $joindate = $_POST['joindate'];
   $bill = $_POST['bill'];
-   $sql = "SELECT controller FROM `frmtable` WHERE `frmtable`.`tableID` = '".$_POST['ban']."'";
-   $result =  $config->selectSingle($sql);
-   $em = $result['controller'];
 
-  $array = array("datajoin" =>$joindate , "table"=>$table,"bill"=>$bill,"employ"=>$em );
-  json_encode($array,JSON_UNESCAPED_UNICODE);
+  $array = array("datajoin" =>$joindate , "table"=>$table,"bill"=>$bill);
+  json_encode($array);
   setcookie($ban, serialize($array), time()+86400 ,"/");
-
-  $sql = "UPDATE `frmtable` SET `info`= '".serialize($array)."'  WHERE `frmtable`.`tableID` = '".$_POST['ban']."' ";
-    if($config->IDU($sql)){
-      echo "THEM THANH CONG";
-    }
-
- 
-
+  echo"set thanh cong";
 }
 
 // echo $array[0]['ST'];
@@ -191,15 +168,11 @@ if("" == trim($_POST['joindate'])){
 }
 
 if(isset($_POST['tableid'])){
-    $tableid = $_POST['tableid'];
-    
-    //$data = unserialize($_COOKIE[$tableid]);
-     $sql = "SELECT * FROM `frmtable` WHERE `frmtable`.`tableID` = '".str_replace("ban","",$tableid)."'  ";
-     $result =  $config->selectSingle($sql);
-     if($result['info'] != ""){
-      $data =unserialize($result['info']);
-    
-      echo json_encode($data);
+  	$tableid = $_POST['tableid'];
+  	if(isset($_COOKIE[$tableid])){
+  	$data = unserialize($_COOKIE[$tableid]);
+
+     echo json_encode($data);
    }else {
      echo "empty";
    }
@@ -212,13 +185,7 @@ $cc = $_POST['destroyban'];
 unset($_COOKIE[$cc]);
 unset($_COOKIE["ghep".$cc]);
 
-// Database 
-    $sql = "UPDATE `frmtable` SET `status` = '0'  , `controller`= '',`info`=''  WHERE `frmtable`.`tableID` = '".str_replace("ban","",$cc)."' ";
-    if($config->IDU($sql)){
-      echo "Hủy thành công";
-    }
-
-  
+  echo "Hủy thành công";
 }
 
 if(isset($_POST['action'])){
@@ -260,7 +227,6 @@ if(isset($_POST['action'])){
     }
 
 }
-
 
 
  ?>

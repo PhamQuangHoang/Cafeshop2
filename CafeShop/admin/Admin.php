@@ -69,11 +69,10 @@
 						<li>
 							<a class="btn btn-default btn-outline btn-circle collapsed" data-toggle="collapse" href="#nav-collapse" aria-expanded="false" aria-controls="nav-collapse"><?php 
 									if(isset($_SESSION['realname'])){
-										echo '<span id="employ">'.$_SESSION['realname'].'</span>' ;
+										echo $_SESSION['realname'] ;
 									}else {
 										echo '<span id="login">Đăng nhập</span>' ;
 									}
-
 
 							 ?> <i class=""></i> </a>
 						</li>

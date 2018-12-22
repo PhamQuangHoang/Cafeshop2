@@ -21,7 +21,6 @@ function startup(id) {
     data: {
       tableid: ban
 
-
     },
     success: function(response) {
       if (response == "empty") {
@@ -32,18 +31,14 @@ function startup(id) {
         $('#totalbill').html(0);
         $('#timesum').html("");
         $('#note').html("");
-
       } else {
         $('table tbody tr td .task input:checkbox').prop('checked', false);
-        
         var obj = JSON.parse(response);
-        alert("Nhân viên phụ trách : " + obj.employ);
         $("#joindate").html(obj.datajoin);
         $("#databody").html(obj.table);
         $('#totalbill').html(obj.bill);
-        $('#em-profile').html(obj.employ);
         $('#note').html(myck);
-        $('#start').prop('disabled', true);
+       
       }
 
     }
@@ -55,26 +50,9 @@ function startup(id) {
 }
 
 function startorder() {
-    var tb = $('#ban').html();
-    var employee = $('#employ').html();
-    var date = new Date().toLocaleString();
-     $.ajax({
-          type: 'post',
-          url: "ajaxcall.php",
-          data: {
-
-            startorder:tb,
-            employee:employee
-
-          },
-          success: function(response) {
-              alert("bàn đã được khởi tạo");
-
-                $("#joindate").html(date);
-                $('#start').prop('disabled', true);
-                $('#em-profile').html(response);
-          }
-        });
+  var date = new Date().toLocaleString();
+  $("#joindate").html(date);
+  $('#start').prop('disabled', true);
 }
 
 // Button ket thuc
@@ -83,7 +61,7 @@ function endup() {
   var startdate = $("#joindate").html();
 
   $("#leftdate").html(enddate);
-  // startdate =  startdate.split(',')[1];
+  // startdate =	startdate.split(',')[1];
   // startdate = startdate.replace("PM", " ").trim();
   startdate = datetoseconds(startdate);
   enddate = datetoseconds(enddate);
@@ -185,7 +163,7 @@ $(document).ready(function() {
 
   $(document).on('click', '#huymon', function() {
     $("#" + tbid).remove();
-    $('#editqty').val("   ");
+    $('#editqty').val(" 	");
     sendupdate();
   });
 

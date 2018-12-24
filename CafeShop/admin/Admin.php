@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start();
+		ob_start();
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -155,3 +158,6 @@
 
 </body>
 </html>
+<?php
+    ob_end_flush(); // Flush the output from the buffer
+?>

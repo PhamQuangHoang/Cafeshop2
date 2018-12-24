@@ -1,9 +1,11 @@
-<script type="text/javascript" src="js/qlban.js">
-
-
-</script>
+<script type="text/javascript" src="js/qlban.js"></script>
 <script src="js/jquery.cookie.js"></script>
+<?php 
 
+	require_once 'config.php';
+	$config = new Config;
+	$result = $config->selectData('select * from frmtable');
+ ?>
 <div class="infomation  hidden" id="exchange">
 	<p><button type="button" id="setcookie" name="button"  ><i class="fas fa-exchange-alt" ></i> Về lại quản lý bàn</button></p>
 </div>
@@ -11,21 +13,34 @@
 <div class="table-responsive" id="mytable"> </div>
 <div id="ordertable">
 	<div class="col-lg-6 col-md-6 col-sm-12-col-xs-12 table-bordered order-table">
-		<?php 
-			for($i = 1 ; $i<=12;$i++){
-				echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" >
+			<?php foreach ($result as $rows) { 
+			
+			echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" >
 			<a href="javascript:void(0)" class="text-center"';
-					if(isset($_COOKIE['ban'.$i.''])) echo 'style="color: #2ecc71; "';
+				if($rows['status'] == 1 ) {
+					echo 'style="color: #2ecc71; "' ; 
+					
+				}else if(isset($_COOKIE['ban'.$rows['tableID']])) {
+					echo 'style="color: #2ecc71; "';
+				}
+				
+				if($rows['status'] == 0 ){
+					echo 'style="color: #0060B6;"';
+					if(isset($_COOKIE['ban'.$rows['tableID']])) {
+						  setcookie("ban".$rows['tableID'], '', 1, "/");
+						  unset($_COOKIE['ban'.$rows['tableID']]);
+						  
+					}
+				}
+				
 
-
-			echo' onclick="startup(id);" id="'.$i.'">
-				<h3 class="glyphicon glyphicon-glass" ></h3><br/>Bàn '.$i.'
+			echo 'onclick="startup(id);" id="'.$rows['tableID'].'">
+				<h3 class="glyphicon glyphicon-glass" ></h3><br/>Bàn '.$rows['tableID'].'
 			</a>
 		</div>';
 
-			}
+			 } ?>
 
-		 ?>
 		
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -46,14 +61,7 @@
 						 <img align="left" class="em-image-lg" src="https://www.iotforall.com/wp-content/uploads/2017/08/background-Newsletter-Signup.png" alt="Profile image example"/>
 						 <img align="left" class="em-image-profile thumbnail" src="https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png" alt="Profile image example"/>
 						 <div class="em-profile-text">
-								 <h4><?php 
-									if(isset($_SESSION['realname'])){
-										echo $_SESSION['realname'];
-									}else {
-										echo "Admin";
-									}
-
-							 ?></h4>
+								 <h4 id="em-profile">admin</h4>
 						 </div>
 				 </div>
 				<div class="infomation">
@@ -65,7 +73,7 @@
 					<ul class="nav nav-tabs">
 						<li>	<p><button type="button" onclick="startorder();" id="start" name="button"><i class="fas fa-play-circle"></i> Bắt đầu</button></p></li>
 						<li>	<p>	<button type="button" onclick="endup();" id="end"  name="button" 	><i class="fas fa-stop" ></i> kết thúc</button></p></li>
-						<li><p >	<button type="button" onclick="removedt();" name="button" ><i class="fas fa-ban"></i> Hủy bàn</button></p></li>
+						<li><p >	<button type="button" ondblclick="removedt();" name="button" ><i class="fas fa-ban"></i> Hủy bàn</button></p></li>
 						<li class="dropdown">
 							 <button class="dropdown-toggle" data-toggle="dropdown">Thêm
 							 <span class="caret"></span></button>
@@ -127,7 +135,7 @@
 
 						<div class="row">
 							<div class="menu-block">
-								<div class="col-md-3 col-sm-3 col-xs-1 ">
+								<div class="col-md-3 col-sm-3 col-xs-3 ">
 									<ul class="nav nav-pills nav-stacked">
 										<li class="active"><a data-toggle="tab" href="#All">All</a></li>
 										<li><a data-toggle="tab" href="#Appetizers">Cafe</a></li>
@@ -222,7 +230,7 @@
         <div class="modal-body">
 					<select id="optional">
 						<?php
-							for($i=1;$i<12;$i++){
+							for($i=1;$i<13;$i++){
 								echo' <option value="ban'.$i.'">Bàn '.$i.'</option>';
 							}
 						 ?>

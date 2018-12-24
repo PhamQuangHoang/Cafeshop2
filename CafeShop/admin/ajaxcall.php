@@ -282,14 +282,26 @@ if(isset($_POST['action'])){
     $action = $_POST['action'];
     $newbat =$_POST['newbat'];
     $oldbat =$_POST['oldbat'];
+    $employee = $_POST['employee'];
     if($newbat == $oldbat){
       die("Không thể thực hiện trên cùng 1 bàn ");
     }
     if($action =="Chuyển bàn"){
       $data = unserialize($_COOKIE[$oldbat]);
+      //chuyen data sang 
       setcookie($newbat, serialize($data), time()+86400 ,"/");
+      $sql = "UPDATE `frmtable` SET `status` = '1'  , `controller`= '".$employee."',`info`= '".serialize($data)."'  WHERE `frmtable`.`tableID` = '".str_replace("ban","",$newbat)."' ";
+    if($config->IDU($sql)){
+      
+    }
+//huy data ban cu
       setcookie($oldbat, '', 1, "/");
-      unset($_COOKIE[$oldbat]);
+       unset($_COOKIE[$oldbat]);
+       $sql = "UPDATE `frmtable` SET `status` = '0'  , `controller`= '',`info`=''  WHERE `frmtable`.`tableID` = '".str_replace("ban","",$oldbat)."' ";
+    if($config->IDU($sql)){
+      
+    }
+     
 
       echo("Đã chuyển từ ".$oldbat. " sang " .$newbat);
     }
@@ -317,6 +329,7 @@ if(isset($_POST['action'])){
     }
 
 }
+
 
 
 

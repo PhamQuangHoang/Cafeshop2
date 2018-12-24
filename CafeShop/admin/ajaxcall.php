@@ -166,6 +166,56 @@ if(isset($_POST['modal4SubmitType'])){
     break;
   }
 }
+
+//modal5
+
+if(isset($_POST['modal5_type_name'])){
+  if(strcmp($_POST['modal5_type_name'],'all') == 0){
+    $results = $config->selectData('select * from resources');
+    $string = "";
+    foreach ($results as $resource) {
+    $resourcex = '"'.$resource['src_name'].'"';
+    $resourceid = '"'.$resource['src_id'].'"';
+    $string .= "<div class='row table-bordered' onclick='parseName5(".$resourcex.",".$resourceid.")'><div class='col-lg-8 col-md-8 col-sm-8 col-xs-8'>
+                <span class='text-justify text-center'>".$resource['src_name']."</span>
+              </div>
+              <div class='col-lg-4 col-md-4 col-sm-4 col-xs-4'>
+                <span class='text-justify text-center'>".$resource['quantity']."</span>
+              </div></div>";
+    }
+    die($string);
+  }else{
+    $id = $config->selectSingle('select type_id from type_drink where type_name = "'.$_POST['modal5_type_name'].'"');
+    $results = $config->selectData('select * from resources where type_id = '.$id['type_id']);
+    $string = "";
+    foreach ($results as $resource) {
+    $resourcex = '"'.$resource['src_name'].'"';
+    $resourceid = '"'.$resource['src_id'].'"';
+    $string .= "<div class='row table-bordered' onclick='parseName5(".$resourcex.",".$resourceid.")'><div class='col-lg-8 col-md-8 col-sm-8 col-xs-8 text-center'>
+                <span class='text-justify'>".$resource['src_name']."</span>
+              </div>
+              <div class='col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center'>
+                <span class='text-justify'>".$resource['quantity']."</span>
+              </div></div>";
+    }
+    die($string);
+  }
+  
+}
+
+if(isset($_POST['modal5srcname'])){
+  $result = $config->selectSingle('select * from resources where src_id = "'.$_POST['modal5srcID'].'"');
+  die(json_encode(array("name"=>$_POST['modal5srcname'], "id"=>$_POST['modal5srcID'],"unit"=>$result['unit'],"quantity"=>$result['quantity'],"price"=>$result['buy_price'])));
+}
+
+if(isset($_POST['modal5_seller'])){
+  $price = implode(", ",$_POST['modal5_src_price']);
+  $quantity = implode(", ",$_POST['modal5_src_quantity']);
+  $name = implode(", ",$_POST['modal5_src_name']);
+  $config->IDU("INSERT INTO `nhapkho_detail` (`nk_id`, `nk_provider`, `nk_address`, `nk_number`, `src_price`, `src_quantity`, `src_name`, `nk_date`) VALUES (NULL, '".$_POST['modal5_seller']."', '".$_POST['modal5_seller_address']."', '".$_POST['modal5_seller_number']."', '".$price."', '".$quantity."', '".$name."', CURRENT_TIMESTAMP)");
+  die('Nhập kho thành công !');
+}
+
 //resource.php
 if(isset($_POST['typeid'])){
   $typeid =$_POST['typeid'];

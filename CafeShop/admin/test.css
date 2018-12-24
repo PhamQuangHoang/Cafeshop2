@@ -5,13 +5,23 @@
   background-color: rgba(0, 0, 0, 0.32);
 }
 #modal_list_type #modal2-list-type{
-  overflow-x: hidden;
-  overflow-y: initial;
+  overflow-x: scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  max-height: 200px;
+  max-height: 50vh;
+}
+.modal5-left{
+  
 }
 .modal2-left div{
   margin-top: 5px;
+}
+#modal5-body div {
+
+}
+#modal5-list-type div:hover{
+  background-color: #1dd1a1;
+  cursor: pointer;
 }
 select {
 		width: 100%;

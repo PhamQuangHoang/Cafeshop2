@@ -1,13 +1,34 @@
+function printDiv() 
+{
 
+  var divToPrint=document.getElementById('tbd');
+  var divToPrint2=document.getElementById('bb');
+  var divToPrint3=document.getElementById('infrm');
+  var divToPrint4=document.getElementById('em-profile');
+
+  var newWin=window.open('','Print-Window');
+
+  newWin.document.open();
+
+  newWin.document.write('<html><head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></head><body onload="window.print()">');
+
+  newWin.document.write('<h1 align="center">CAFEHOUSES</h1><h2>Đơn hàng </h2>'+'</br>'+divToPrint.innerHTML+'</br><h3> Nhân viên : '+divToPrint4.innerHTML+'</h3></br>'+divToPrint3.innerHTML+'</br>'+divToPrint2.innerHTML+'</body></html>');
+
+  newWin.document.close();
+
+  setTimeout(function(){newWin.close();},10);
+
+}
 
 
 // button vao`
 function startup(id) {
+   var num = id.replace("tb", "");
   $("div#ordertable").addClass("hidden");
   $("div#detailtable").removeClass("hidden");
   $("div#exchange").removeClass("hidden");
-  $("#ban").html(id);
-  var ban = "ban" + id;
+  $("#ban").html(num);
+  var ban = "ban" + num;
   var myck = "";
   if ($.cookie("ghep" + ban) != undefined) {
     myck = $.cookie("ghep" + ban);
@@ -29,7 +50,7 @@ function startup(id) {
     success: function(response) {
       if (response == "empty") {
         $('#joindate').html("");
-        $('#ordertab').html('<thead><tr><th scope="col">ST</th><th scope="col">Tên hàng</th><th scope="col">Giá</th><th scope="col">Số lượng</th><th scope="col">Thành tiền</th></tr></thead><tbody id="databody"></tbody>');
+        $('#ordertab').html('<thead><tr><th scope="col">Mã hàng</th><th scope="col">Tên hàng</th><th scope="col">Giá</th><th scope="col">Số lượng</th><th scope="col">Thành tiền</th></tr></thead><tbody id="databody"></tbody>');
         $('table tbody tr td .task input:checkbox').prop('checked', false);
         $('#start').prop('disabled', false);
         $('#totalbill').html(0);
@@ -84,14 +105,39 @@ function startorder() {
 function endup() {
   var enddate = new Date().toLocaleString();
   var startdate = $("#joindate").html();
-
   $("#leftdate").html(enddate);
-  // startdate =  startdate.split(',')[1];
-  // startdate = startdate.replace("PM", " ").trim();
   startdate = datetoseconds(startdate);
   enddate = datetoseconds(enddate);
-
   $("#timesum").html(((enddate - startdate) / 60).toFixed(0) + " Phút");
+
+ var ban = $('#ban').html();
+ var money = $('#totalbill').html();
+ var khachdua = $('#money').val();
+ var employee = $('#employ').html();
+ var str = '';
+  $("#ordertab tr").each(function(){
+   str +=$(this).find("td:nth-child(2)").text()+'-';
+
+});
+  
+     $.ajax({
+          type: 'post',
+          url: "ajaxcall.php",
+          data: {
+              endtable:ban,
+              employee:employee,
+              billtotal:money,
+              pos:khachdua,
+              menu:str
+
+
+
+          },
+          success: function(response) {
+            alert(response);
+            
+          }
+        });
 }
 
 // convert date to seconds
@@ -126,7 +172,7 @@ function removedt() {
       $('#note').html(" ");
       $('#totalbill').html(0);
       $('table tbody tr td .task input:checkbox').prop('checked', false);
-      $('#' + banc).css("color", "#0060B6");
+      $('#tb' + banc).css("color", "#0060B6");
 
       alert(response);
     }
@@ -313,7 +359,7 @@ $(document).ready(function() {
           $('#ordertab').html('<thead><tr><th scope="col">ST</th><th scope="col">Tên hàng</th><th scope="col">Giá</th><th scope="col">Số lượng</th><th scope="col">Thành tiền</th></tr></thead><tbody id="databody"></tbody>');
 
         } else {
-          $("#" + ban).css("color", "#2ecc71");
+          $("#tb" + ban).css("color", "#2ecc71");
         }
       }
     });

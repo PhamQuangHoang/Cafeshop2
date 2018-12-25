@@ -274,6 +274,26 @@ if(isset($_POST['typeid'])){
 
 // QLBAN SESSION
 
+
+//Ket thuc button
+if(isset($_POST['endtable'])){
+  $tab =$_POST['endtable'];
+  $emp = $_POST['employee'];
+  $menu = $_POST['menu'];
+  $total = $_POST['billtotal'];
+  $pos = $_POST['pos'];
+
+
+  $sql = "INSERT INTO `bill` (`bill_id`, `bill_table`, `bill_employee`, `bill_drinks`, `bill_phuthu`, `bill_sale`, `bill_price`, `bill_moneytaked`, `bill_time`) VALUES (NULL, '$tab', '$emp', '$menu','0','0', '$total', '$pos', CURRENT_TIMESTAMP)";
+   if($config->IDU($sql)){
+    echo 'Hoàn thành giao dịch --- Bạn có thể hủy bàn  or Xuất bill  ngay bây giờ :D ';
+   }else {
+    die('false');
+   }
+
+
+}
+
 // bat dau button
 if(isset($_POST['startorder'])){
  $sql = "UPDATE `frmtable` SET `status` = '1' , `controller`= '".$_POST['employee']."' WHERE `frmtable`.`tableID` = '".$_POST['startorder']."' ";

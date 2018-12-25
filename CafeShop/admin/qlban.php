@@ -20,7 +20,9 @@
 				if($rows['status'] == 1 ) {
 					echo 'style="color: #2ecc71; "' ; 
 					
-				}else if(isset($_COOKIE['ban'.$rows['tableID']])) {
+				}
+
+			    if(isset($_COOKIE['ban'.$rows['tableID']])) {
 					echo 'style="color: #2ecc71; "';
 				}
 				
@@ -34,7 +36,7 @@
 				}
 				
 
-			echo 'onclick="startup(id);" id="'.$rows['tableID'].'">
+			echo 'onclick="startup(id);" id="tb'.$rows['tableID'].'">
 				<h3 class="glyphicon glyphicon-glass" ></h3><br/>Bàn '.$rows['tableID'].'
 			</a>
 		</div>';
@@ -61,10 +63,10 @@
 						 <img align="left" class="em-image-lg" src="https://www.iotforall.com/wp-content/uploads/2017/08/background-Newsletter-Signup.png" alt="Profile image example"/>
 						 <img align="left" class="em-image-profile thumbnail" src="https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png" alt="Profile image example"/>
 						 <div class="em-profile-text">
-								 <h4 id="em-profile">admin</h4>
+								 <h4 id="em-profile" >admin</h4>
 						 </div>
 				 </div>
-				<div class="infomation">
+				<div class="infomation" id="infrm">
 						<p>Bàn : <span id="ban"></span> </p>
 						<p>Giờ vào : <span id="joindate"></span> </p>
 						<p>Giờ ra  : <span id="leftdate"></span> </p>
@@ -84,11 +86,11 @@
 						 </li>
 					</ul>
 				</div>
-				<div class="table-responsive">
+				<div class="table-responsive" id="tbd">
 					<table class="table table-sm" id="ordertab">
 					  <thead>
 					    <tr>
-					      <th scope="col">ST</th>
+					      <th scope="col">Mã hàng</th>
 					      <th scope="col">Tên hàng</th>
 					      <th scope="col">Giá</th>
 					      <th scope="col">Số lượng</th>
@@ -103,7 +105,7 @@
 				<div class="infomation ">
 					 <ul class="nav nav-tabs text-center">
 						 	<li >Tên hàng :	<input type="text" id="editqty" style=" text-align:center;" name="" value="" disabled="true"> | <button type="button" id="huymon" name="button">Hủy món</button></li>
-					 	<li>
+					 		<li>
 								<div class="input-group number-spinner">
 								<span class="input-group-btn">
 									<button id="sub" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
@@ -117,12 +119,14 @@
 					 </ul>
 				</div>
 				<div class="infomation mt-15">
-			 		<p>	Thành tiền :<span id="totalbill">0</span></p>
-					<p>	 Ghi chú: <span id="note"></span></p>
-			 		<p>	Tổng giờ :	<span id="timesum">0</span></p>
+			 		<div id="bb">
+			 			<p>	Thành tiền :<span id="totalbill">0</span> vnd</p>
+						<p>	 Ghi chú: <span id="note"></span> vnd</p>
+				 		<p>	Tổng giờ :	<span id="timesum">0</span></p>
+			 		</div>
 			 		<p>	Khách đưa : <input type="text" name="" value="" id="money"> </p>
 			 		<p>	Tiền thừa :&emsp;<input type="text" name="" value="" id="moneyback"> </p>
-			 		<p>	<button type="button" name="button"><i class="fas fa-file-export"></i>Xuất bill</button> </p>
+			 		<p>	<button type="button" name="button" onclick="printDiv();"><i class="fas fa-file-export"></i>Xuất bill</button> </p>
 				</div>
 
 				</div>
@@ -132,17 +136,32 @@
 						<div class="block-heading mt-15">
 							<h1>Menu</h1>
 						</div>
-
+					
 						<div class="row">
 							<div class="menu-block">
 								<div class="col-md-3 col-sm-3 col-xs-3 ">
+									
 									<ul class="nav nav-pills nav-stacked">
 										<li class="active"><a data-toggle="tab" href="#All">All</a></li>
-										<li><a data-toggle="tab" href="#Appetizers">Cafe</a></li>
-										<li><a data-toggle="tab" href="#Soups">Sửa</a></li>
-										<li><a data-toggle="tab" href="#Salads">Bánh mì</a></li>
-										<li><a data-toggle="tab" href="#starters">Trà</a></li>
+										<?php 
+										
+										$result = $config->selectData('select * from type_drink');
+										$arr = array();
+										$count =0;
+										foreach ($result as $rows) { 
+										 	
+										 	array_push($arr,'#data-'.$rows['type_id']);
+										 	echo'<li><a data-toggle="tab" href="#data-'.$rows['type_id'].'" >'.$rows['type_name'].'</a></li>';
+										 }
+										
+										 $result = $config->selectData('select count(*) as count from type_drink');
+										 	foreach ($result as $rows) { 
+										 		$count = $rows['count'];
+										 	 }
+									 ?>	
 									</ul>
+
+								
 								</div>
 								<div class="col-md-9 col-sm-9 col-xs-9 ">
 									<div class="tab-content">
@@ -152,32 +171,72 @@
 													<table class="table">
 														<thead>
 															<tr>
-																<th scope="col">ID</th>
-																<th scope="col">Đồ ăn</th>
+																<th scope="col">STT</th>
+																<th scope="col">Tên hàng </th>
 																<th scope="col">Giá</th>
 															</tr>
 														</thead>
 														<tbody>
+															<?php $i=1;
+																	$result_right = $config->selectData('select * from drink where 1 ');
+																		foreach ($result_right as $rows_right) {
+																			echo '	<tr>
+																						<th scope="row">'.$i++.'</th>
+																						<td>
+																							<label class="task">
+																								<input type="checkbox" class="mainlist" name="checkbox" data-ref="'. $rows_right['drink_id'].'" value="'. $rows_right['drink_name'].'|'.$rows_right['price'].'">
+																								<i class="fas fa-check"></i>
+																								<span class="text">'. $rows_right['drink_name'].'</span>
+																							</label></td>
+																						<td>'.$rows_right['price'].'</td>
+																					</tr>';
+																		}
+
+															 ?>
+
+														</tbody>
+													</table>
+												</div>
+
+											</div>
+										</div>
+						<?php 	for($k=0;$k<$count;$k++){
+										echo '<div id="'.str_replace("#","",$arr[$k]).'" class="tab-pane fade">
+											<div class="row">
+													<div class="col-md-12 ">
+													<table class="table">
+														<thead>
 															<tr>
-																<th scope="row">1</th>
-																<td>
-																	<label class="task">
-																		<input type="checkbox" class="mainlist" name="checkbox" data-ref="1" value="Phin sửa nóng|20000">
-																		<i class="fas fa-check"></i>
-																		<span class="text">Phin sửa nóng</span>
-																	</label></td>
-																<td>20000</td>
+																<th scope="col">STT</th>
+																<th scope="col">Tên hàng </th>
+																<th scope="col">Giá</th>
 															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>
-																	<label class="task">
-																		<input type="checkbox"  class="mainlist" name="checkbox" data-ref="2" value="Freeze trà xanh|23000">
-																		<i class="fas fa-check"></i>
-																		<span class="text">Freeze trà xanh</span>
-																	</label></td>
-																<td>23000</td>
-															</tr>
+														</thead>
+														<tbody>';
+																	$i=1;
+																	$result_right = $config->selectData('select * from drink where type_id = '.str_replace('#data-',"",$arr[$k]).' ');
+																		foreach ($result_right as $rows_right) {
+																			echo '	<tr>
+																						<th scope="row">'.$i++.'</th>
+																						<td>
+																							<label class="task">
+																								<input type="checkbox" class="mainlist" name="checkbox" data-ref="'. $rows_right['drink_id'].'" value="'. $rows_right['drink_name'].'|'.$rows_right['price'].'">
+																								<i class="fas fa-check"></i>
+																								<span class="text">'. $rows_right['drink_name'].'</span>
+																							</label></td>
+																						<td>'.$rows_right['price'].'</td>
+																					</tr>';
+																		}
+
+										echo'	
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>';
+								}
+															 ?>
+													<!-- 		
 															<tr>
 																<th scope="row">3</th>
 																<td>
@@ -188,19 +247,9 @@
 																	</label></td>
 																<td>29000</td>
 															</tr>
-
-														</tbody>
-													</table>
-												</div>
-
-											</div>
-										</div>
-										<div id="Appetizers" class="tab-pane fade">
-											<div class="row">
-
-											</div>
-										</div>
-										<div id="Salads" class="tab-pane fade">
+ -->
+													
+										<!-- <div id="Salads" class="tab-pane fade">
 											<div class="row">
 
 											</div>
@@ -209,13 +258,13 @@
 											<div class="row">
 
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
 						</div>
 				</div>
-				</section>
+			</section>
 		</div>
 
 

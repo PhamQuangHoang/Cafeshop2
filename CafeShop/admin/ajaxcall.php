@@ -213,6 +213,16 @@ if(isset($_POST['modal5_seller'])){
   $quantity = implode(", ",$_POST['modal5_src_quantity']);
   $name = implode(", ",$_POST['modal5_src_name']);
   $config->IDU("INSERT INTO `nhapkho_detail` (`nk_id`, `nk_provider`, `nk_address`, `nk_number`, `src_price`, `src_quantity`, `src_name`, `nk_date`) VALUES (NULL, '".$_POST['modal5_seller']."', '".$_POST['modal5_seller_address']."', '".$_POST['modal5_seller_number']."', '".$price."', '".$quantity."', '".$name."', CURRENT_TIMESTAMP)");
+  $arrayprice = $_POST['modal5_src_price'];
+  $arrayquantity = $_POST['modal5_src_quantity'];
+  $arrayname = $_POST['modal5_src_name'];
+  $note = '';
+  $money = 0;
+  for($i=0;$i<count($arrayprice);$i++){
+    $note .= $arrayquantity[$i].' x '.$arrayname[$i].', \n';
+    $money += $arrayprice[$i];
+  }
+  $config->IDU("INSERT INTO `thuchi` (`thuchi_id`, `thuchi_type`, `thuchi_price`, `thuchi_thanhtien`, `thuchi_note`, `thuchi_time`, `thuchi_customer`, `thuchi_address`, `thuchi_customernumber`) VALUES (NULL, '1', '".$money."', '".$money."', '".$note."', CURRENT_TIMESTAMP, '".$_POST['modal5_seller']."', '".$_POST['modal5_seller_address']."', '".$_POST['modal5_seller_number']."')");
   die('Nhập kho thành công !');
 }
 //modal6,6.1
@@ -233,6 +243,30 @@ if(isset($_POST['modal6_table_id'])){
   }
   die(json_encode(array("tdtable"=>$tdtable, "sumprice"=>$sumprice,"tddetail"=>$tddetail)));
 } 
+//modal78
+
+if(isset($_POST['thuchi_type'])){
+  if($_POST['thuchi_type'] == 1){
+    die('CHI');
+  }else{
+    die('THU');
+
+  }
+}
+if(isset($_POST['modal78_name_kh'])){
+  $thuchi = 2;
+  if($_POST['modal78_thuchi_type'] === 'THU') $thuchi = 0;
+  if($_POST['modal78_thuchi_type'] === 'CHI') $thuchi = 1;
+  $config->IDU("INSERT INTO `thuchi` (`thuchi_id`, `thuchi_type`, `thuchi_price`, `thuchi_thanhtien`, `thuchi_note`, `thuchi_time`, `thuchi_customer`, `thuchi_address`, `thuchi_customernumber`) VALUES (NULL, '".$thuchi."', '".$_POST['modal78_price']."', '".$_POST['modal78_price']."', '".$_POST['modal78_textarea']."', CURRENT_TIMESTAMP, '".$_POST['modal78_name_kh']."', '".$_POST['modal78_address']."', '".$_POST['modal78_number']."')");
+  
+}
+//modal-info
+if(isset($_POST['info_create'])){
+  $config->IDU("INSERT INTO `info_cafe` (`id`, `name`, `vat`, `bankid`, `bank_name`, `address`, `hotline`) VALUES (1, '".$_POST['info_name']."', '".$_POST['vat']."', '".$_POST['info_bankid']."', '".$_POST['info_bank']."', '".$_POST['info_address']."', '".$_POST['info_hotline']."')");
+}
+if(isset($_POST['info_update'])){
+  $config->IDU("UPDATE `info_cafe` SET `name` = '".$_POST['info_name']."', `vat` = '".$_POST['vat']."', `bankid` = '".$_POST['info_bankid']."', `address` = '".$_POST['info_address']."', `hotline` = '".$_POST['info_hotline']."' WHERE `info_cafe`.`id` = 1;");
+}
 
 //resource.php
 if(isset($_POST['typeid'])){

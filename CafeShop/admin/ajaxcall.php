@@ -215,6 +215,24 @@ if(isset($_POST['modal5_seller'])){
   $config->IDU("INSERT INTO `nhapkho_detail` (`nk_id`, `nk_provider`, `nk_address`, `nk_number`, `src_price`, `src_quantity`, `src_name`, `nk_date`) VALUES (NULL, '".$_POST['modal5_seller']."', '".$_POST['modal5_seller_address']."', '".$_POST['modal5_seller_number']."', '".$price."', '".$quantity."', '".$name."', CURRENT_TIMESTAMP)");
   die('Nhập kho thành công !');
 }
+//modal6,6.1
+
+if(isset($_POST['modal6_table_id'])){
+  
+  $details = $config->selectSingle('select * from nhapkho_detail where nk_id='.$_POST['modal6_table_id']);
+  
+  $tdtable = "<tr><td>".$details['nk_id']."</td><td>".$details['nk_provider']."</td><td>".$details['nk_address']."</td><td>".$details['nk_number']."</td><td>".$details['nk_date']."</td></tr>";
+  $array_src_price = explode(", ",$details['src_price']);
+  $array_src_quantity = explode(", ",$details['src_quantity']);
+  $array_src_name = explode(", ",$details['src_name']);
+  $tddetail = '';
+  $sumprice = 0;
+  for($i =0;$i<count($array_src_price);$i++) {
+    $tddetail .= "<tr><td>".$array_src_name[$i]."</td><td>".$array_src_price[$i]/$array_src_quantity[$i]."</td><td>".$array_src_quantity[$i]."</td><td>".$array_src_price[$i]."</tr>";
+    $sumprice += $array_src_price[$i];
+  }
+  die(json_encode(array("tdtable"=>$tdtable, "sumprice"=>$sumprice,"tddetail"=>$tddetail)));
+} 
 
 //resource.php
 if(isset($_POST['typeid'])){

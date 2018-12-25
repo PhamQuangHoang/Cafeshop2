@@ -171,6 +171,7 @@ $(document).ready(function(){
     });
     $("#modal5-sum-price").html(sumprice);
   });
+
 });
 function modal2Submit(type){
   switch(type){
@@ -406,6 +407,21 @@ function btnImport(){
       $('#modal5-table tr td').remove();
       $('#modal5-sum-price').html('0d');
       $('#modal5-name-table').html('None');
+    }
+  });
+}
+function parseName6(id){
+  $.ajax({
+    type:'post',
+    url:'ajaxcall.php',
+    dataType:'json',
+    data:{modal6_table_id:id},
+    success:function(response){
+      // alert(response);
+      $('#modal61-table').append(response.tdtable);
+      $('#modal61-tddetail').append(response.tddetail);
+      $('#modal61-tddetail').append("<tr><td></td><td></td><td></td><td style='background-color:yellow;'>"+response.sumprice+"</td>");
+      $('#modal61').modal('show');
     }
   });
 }
@@ -786,6 +802,82 @@ function btnImport(){
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+
+  </div>
+</div>
+
+<div id="modal6" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Danh sách nhập kho nguyên liệu</h4>
+      </div>
+      <div class="modal-body col-lg-12 col-md-12 col-xs-12 col-sm-12" id="modal6-body">
+
+          <table class="table-bordered text-center" id="modal6-table" width="100%">
+            <tr>
+              <th>Mã nhập kho</th>
+              <th>Nhà cung cấp</th>
+              <th>Mặt hàng</th>
+              <th>Thời gian nhập</th>
+            </tr>
+            <?php 
+              $result = $config->selectData('select * from nhapkho_detail');
+              foreach ($result as $row) {
+                echo "<tr onclick='parseName6(".$row['nk_id'].")'><td>".$row['nk_id']."</td><td>".$row['nk_provider']."</td><td>".$row['src_name']."</td><td>".$row['nk_date']."</td></tr>";
+              }
+              
+             ?>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="modal61" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Chi tiết danh sách nhập kho nguyên liệu</h4>
+      </div>
+      <div class="modal-body col-lg-12 col-md-12 col-xs-12 col-sm-12" id="modal6-body">
+          
+          <table class="table-bordered text-center" id="modal61-table" width="100%">
+            <tr>
+              <th>Mã nhập kho</th>
+              <th>Nhà cung cấp</th>
+              <th>Đìa chỉ NCC</th>
+              <th>Số điện thoại</th>
+              <th>Thời gian nhập</th>
+            </tr>
+            
+          </table>
+          <br>
+          <label class="text-success">Chi tiết hàng được nhập:</label>
+          <table id="modal61-tddetail" class="table-bordered text-center">
+            <tr>
+              <th>Tên hàng (1)</th>
+              <th>Giá thành (2)</th>
+              <th>Số lượng (3)</th>
+              <th>Tổng tiền (2x3)</th>
+            </tr>
+            
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+              
 
   </div>
 </div>

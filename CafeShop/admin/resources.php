@@ -5,10 +5,10 @@ function showdata(id){
         type:'post',
           url: "ajaxcall.php",
         data:{
-          typeid:id
+          typeid2:id
         },
         success:function(response) {
-          $('.result').html(response);
+          $('.result2').html(response);
         }
       });
     
@@ -32,7 +32,7 @@ function showdata(id){
 		<?php } ?>
 	</ul>
 </div>
-<div class="col-lg-9 col-md-9 col-sm-12 cl-xs-12" style="margin-top:20px;">
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="margin-top:20px;">
 	<div class="row">
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 menu-right-head">
 			<p class="text-center">Tên hàng hóa</p>
@@ -51,7 +51,7 @@ function showdata(id){
 		</div>
 	</div>
 	
-	<div class="result">
+	<div class="result2">
 		
 
 

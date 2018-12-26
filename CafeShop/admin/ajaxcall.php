@@ -269,8 +269,8 @@ if(isset($_POST['info_update'])){
 }
 
 //resource.php
-if(isset($_POST['typeid'])){
-  $typeid =$_POST['typeid'];
+if(isset($_POST['typeid2'])){
+  $typeid =$_POST['typeid2'];
   $output ='';
 
 
@@ -298,10 +298,34 @@ if(isset($_POST['typeid'])){
 	' ;
 
 
-
-
 	}
 	die($output);
+}
+if(isset($_POST['typeid1'])){
+  $typeid =$_POST['typeid1'];
+  $output ='';
+
+
+
+    $result_right = $config->selectData('select * from drink where type_id = '.$typeid);
+
+    foreach ($result_right as $rows_right) {
+
+  $output .='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 menu-right"> '. $rows_right['drink_name'] .' </div>
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 menu-right">
+     '. $rows_right['drink_id'] .'
+  </div>
+  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 menu-right">
+     '. $rows_right['unit'] .'
+  </div>
+  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 menu-right">
+    '.  $rows_right['price'] .'
+  </div>
+  <div class="col-lg-3 col-md-2 col-sm-2 col-xs-4 menu-right">
+    '.  $rows_right['quantity'].'
+  </div>';
+  }
+  die($output);
 }
 
 

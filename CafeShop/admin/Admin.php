@@ -16,7 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="test.css?v=<?php echo mt_rand(); ?>">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-
+	<link rel="stylesheet" type="text/css" href="main.css?v=<?php echo mt_rand(); ?>">
+	<script src="js/main.js?v=<?php echo mt_rand(); ?>"></script>
 </head>
 
 <body>

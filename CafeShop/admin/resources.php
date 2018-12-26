@@ -9,7 +9,7 @@ function showdata(id){
         },
         success:function(response) {
         	
-          $('#table_table #table_row:not(:first-child)').remove();
+          $('div.table2 #table_row:not(:first-child)').remove();
         $('div[name=table_table2]').append(response);
         }
       });
@@ -38,7 +38,7 @@ function showdata(id){
 	<div class="limiter">
 	 	<div class="container-table100">
 	 		<div class="wrap-table100">
-	 				<div class="table" id="table_table" name="table_table2">
+	 				<div class="table table2" id="table_table" name="table_table2">
 
 	 					<div class="row header" id="table_row">
 	 						<div class="cell">

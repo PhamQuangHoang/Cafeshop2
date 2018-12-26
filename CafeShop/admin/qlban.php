@@ -25,7 +25,7 @@
 			    if(isset($_COOKIE['ban'.$rows['tableID']])) {
 					echo 'style="color: #2ecc71; "';
 				}
-				
+
 				if($rows['status'] == 0 ){
 					echo 'style="color: #0060B6;"';
 					if(isset($_COOKIE['ban'.$rows['tableID']])) {
@@ -46,7 +46,7 @@
 		
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-				
+				Ý tưởng mới đi  ,
 
 	</div>
 </div>

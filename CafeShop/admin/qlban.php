@@ -46,7 +46,7 @@
 		
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-				Ý tưởng mới đi  ,
+				
 
 	</div>
 </div>
@@ -75,7 +75,7 @@
 					<ul class="nav nav-tabs">
 						<li>	<p><button type="button" onclick="startorder();" id="start" name="button"><i class="fas fa-play-circle"></i> Bắt đầu</button></p></li>
 						<li>	<p>	<button type="button" onclick="endup();" id="end"  name="button" 	><i class="fas fa-stop" ></i> kết thúc</button></p></li>
-						<li><p >	<button type="button" ondblclick="removedt();" name="button" ><i class="fas fa-ban"></i> Hủy bàn</button></p></li>
+						<li><p >	<button type="button" onclick="removedt();" name="button" ><i class="fas fa-ban"></i> Hủy bàn</button></p></li>
 						<li class="dropdown">
 							 <button class="dropdown-toggle" data-toggle="dropdown">Thêm
 							 <span class="caret"></span></button>

@@ -307,17 +307,6 @@ $(document).ready(function() {
 
 
 
-//random color
-$(document).ready(function() {
-  var colors = ['#03dac6', '#f48fb1', '#ce93d8', '#d1c4e9', '#bbdefb', '#cddc39', '#ffb74d', '#eeeeee', '#b0b3c5'];
-  var random_color = colors[Math.floor(Math.random() * colors.length)];
-  $('.menu-right').css('background-color', random_color);
-});
-
-
-
-
-
 $(document).ready(function() {
   $(document).on('click', '#setcookie', function() {
     var ban = $('#ban').html();

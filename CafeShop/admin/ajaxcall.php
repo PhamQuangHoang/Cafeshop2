@@ -279,24 +279,19 @@ if(isset($_POST['typeid2'])){
 
 		foreach ($result_right as $rows_right) {
 
-	$output .='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 menu-right"> '. $rows_right['src_name'] .' </div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 menu-right">
-		 '. $rows_right['src_id'] .'
-	</div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 menu-right">
-		 '. $rows_right['unit'] .'
-	</div>
-	<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 menu-right">
-		'.  $rows_right['buy_price'] .'
-	</div>
-	<div class="col-lg-3 col-md-2 col-sm-2 col-xs-4 menu-right">
-		'.  $rows_right['quantity'].'
-	</div>
-
-
-
-	' ;
-
+	$output .='<div class="row" id="table_row"><div class="cell" data-title="tên hàng hóa">'. $rows_right['src_name'] .' </div>
+  <div class="cell" data-title="mã hàng">
+     '. $rows_right['src_id'] .'
+  </div>
+  <div class="cell" data-title="đơn vị">
+     '. $rows_right['unit'] .'
+  </div>
+  <div class="cell" data-title="giá mua">
+    '.  $rows_right['buy_price'] .'
+  </div>
+  <div class="cell" data-title="số lượng">
+    '.  $rows_right['quantity'].'
+  </div></div>';
 
 	}
 	die($output);
@@ -304,26 +299,26 @@ if(isset($_POST['typeid2'])){
 if(isset($_POST['typeid1'])){
   $typeid =$_POST['typeid1'];
   $output ='';
-
+  $i = 1;
 
 
     $result_right = $config->selectData('select * from drink where type_id = '.$typeid);
 
     foreach ($result_right as $rows_right) {
 
-  $output .='<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 menu-right"> '. $rows_right['drink_name'] .' </div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 menu-right">
+  $output .='<div class="row" id="table_row"><div class="cell" data-title="tên hàng hóa">'. $rows_right['drink_name'] .' </div>
+  <div class="cell" data-title="mã hàng">
      '. $rows_right['drink_id'] .'
   </div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 menu-right">
+  <div class="cell" data-title="đơn vị">
      '. $rows_right['unit'] .'
   </div>
-  <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 menu-right">
+  <div class="cell" data-title="giá bán">
     '.  $rows_right['price'] .'
   </div>
-  <div class="col-lg-3 col-md-2 col-sm-2 col-xs-4 menu-right">
+  <div class="cell" data-title="số lượng">
     '.  $rows_right['quantity'].'
-  </div>';
+  </div></div>';
   }
   die($output);
 }

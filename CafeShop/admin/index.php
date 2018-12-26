@@ -1,6 +1,10 @@
 <?php session_start();
 		ob_start();
+		if(!isset($_SESSION['realname'])){
 
+			
+			echo '<script type="text/javascript">if(!alert("Ban chua dang nhap \nVui long dang nhap truoc !")){window.location.href = "Account/Login.php";}
+			</script>';}
  ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +25,8 @@
 </head>
 
 <body>
-	<?php include_once 'navigation.php' ?>
+	<?php 
+	include_once 'navigation.php' ?>
 	<!-- dynamictabs -->
 	<div class="container-fluid">
 		<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">

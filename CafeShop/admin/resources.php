@@ -8,7 +8,9 @@ function showdata(id){
           typeid2:id
         },
         success:function(response) {
-          $('.result2').html(response);
+        	
+          $('#table_table #table_row:not(:first-child)').remove();
+        $('div[name=table_table2]').append(response);
         }
       });
     
@@ -33,28 +35,35 @@ function showdata(id){
 	</ul>
 </div>
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="margin-top:20px;">
-	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 menu-right-head">
-			<p class="text-center">Tên hàng hóa</p>
-		</div>
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 menu-right-head">
-			<p class="text-center">Mã hàng</p>
-		</div>
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 menu-right-head">
-			<p class="text-center">Đơn vị</p>
-		</div>
-		<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 menu-right-head">
-			<p class="text-center">Giá mua</p>
-		</div>
-		<div class="col-lg-3 col-md-2 col-sm-2 col-xs-4 menu-right-head">
-			<p class="text-center">Số lượng</p>
-		</div>
-	</div>
-	
-	<div class="result2">
-		
+	<div class="limiter">
+	 	<div class="container-table100">
+	 		<div class="wrap-table100">
+	 				<div class="table" id="table_table" name="table_table2">
 
+	 					<div class="row header" id="table_row">
+	 						<div class="cell">
+	 							Tên hàng hóa
+	 						</div>
+	 						<div class="cell">
+	 							Mã hàng
+	 						</div>
+	 						<div class="cell">
+	 							Đơn vị
+	 						</div>
+	 						<div class="cell">
+	 							Giá mua
+	 						</div>
+	 						<div class="cell">
+	 							Số lượng
+	 						</div>
+	 						
+	 					</div>
+	 					<span id="table_row">
+	 						
+	 					</span>
 
-
-	</div>
+	 				</div>
+	 		</div>
+	 	</div>
+	 </div>
 </div>

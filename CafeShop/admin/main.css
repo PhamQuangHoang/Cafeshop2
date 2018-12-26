@@ -1,0 +1,163 @@
+.limiter {
+  width: 100%;
+}
+
+.container-table100 {
+  width: 100%;
+  
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 8px;
+}
+
+.wrap-table100 {
+  width: 100%;
+  border-radius: 5px;
+  border:solid 1px lightgray;
+  overflow: hidden;
+}
+
+#table_table {
+  width: 100%;
+  display: table;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #table_table {
+    display: block;
+  }
+}
+
+#table_row {
+  display: table-row;
+  background: #fff;
+}
+
+#table_row.header {
+  color: #ffffff;
+  background: #6c7ae0;
+}
+
+@media screen and (max-width: 768px) {
+  #table_row {
+    display: block;
+  }
+
+  #table_row.header {
+    padding: 0;
+    height: 0px;
+  }
+
+  #table_row.header .cell {
+    display: none;
+  }
+
+  #table_row .cell:before {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: #808080;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: unset !important;
+
+    margin-bottom: 7px;
+    content: attr(data-title);
+    display: block;
+  }
+}
+
+.cell {
+  display: table-cell;
+}
+
+@media screen and (max-width: 768px) {
+  .cell {
+    display: block;
+  }
+}
+
+#table_row .cell {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+#table_row.header .cell {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 19px;
+  padding-bottom: 19px;
+}
+
+#table_row .cell:nth-child(1) {
+  padding-left: 40px;
+}
+
+#table_row .cell:nth-child(2) {
+  
+}
+
+#table_row .cell:nth-child(3) {
+  
+}
+
+#table_row .cell:nth-child(4) {
+  
+}
+
+
+.table, #table_row {
+  width: 100% !important;
+}
+
+#table_row:hover {
+  background-color: #ececff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #table_row {
+    border-bottom: 1px solid #f2f2f2;
+    padding-top: 15px;
+    margin: 0;
+  }
+  
+  #table_row .cell {
+    border: none;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+  }
+  #table_row .cell:nth-child(1) {
+    padding-left: 15px;
+  }
+  
+  #table_row .cell {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #555555;
+    line-height: 1;
+    font-weight: unset !important;
+  }
+
+  #table_table, #table_row, .cell {
+    width: 100% !important;
+  }
+}
